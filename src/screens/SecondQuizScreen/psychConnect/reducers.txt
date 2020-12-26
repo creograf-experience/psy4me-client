@@ -1,0 +1,53 @@
+import { handleActions } from 'redux-actions';
+import {
+  getPsychDataRequest,
+  getPsychIDSuccess,
+  getPsychProfileSuccess,
+  getPsychDataFailure,
+} from './actionsPsych';
+
+const initialState = {
+  fetching: false,
+  psychID: null,
+  psychProfile: null,
+  status: null,
+  errors: null,
+};
+
+export const psychProfile = handleActions(
+  {
+    [getPsychDataRequest](state) {
+      return {
+        ...state,
+        fetching: true,
+      };
+    },
+    [getPsychIDSuccess](state, { payload }) {
+      return {
+        ...state,
+        psychID: payload.psychID,
+        errors: null,
+        status: 'ok',
+        fetching: false,
+      };
+    },
+    [getPsychProfileSuccess](state, { payload }) {
+      return {
+        ...state,
+        psychProfile: payload.psychProfile,
+        errors: null,
+        status: 'ok',
+        fetching: false,
+      };
+    },
+    [getPsychDataFailure](state, { payload }) {
+      return {
+        ...state,
+        errors: payload.serverError,
+        status: 'error',
+        fetching: false,
+      };
+    },
+  },
+  initialState
+);

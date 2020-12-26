@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Psy4Me",
+    "slug": "psy4me-client",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logos/psy4me_logo.png",
+    "splash": {
+      "image": "./assets/images/logos/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "The app would like to access your camera to taking the photo for your profile photo upload or to scanning the QR Code. Your photos won't be shared without your permission.",
+        "NSPhotoLibraryUsageDescription": "The app would like to access your photo gallery for your profile photo upload. Your photos won't be shared without your permission."
+      }
+    },
+    "description": ""
+  }
+}

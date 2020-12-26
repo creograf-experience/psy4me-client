@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+                       initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body style="width: 100%; height: 100%;">
+<script type="text/javascript" src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+<script type="text/javascript">
+  function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+  }
+
+  function subscribe() {
+    let widget = new cp.CloudPayments();
+
+    let data = {};
+
+    const receipt = {
+      description: 'Подписка на консультацию психолога', //наименование товара
+      price: 1500.00, //цена
+      quantity: 1, //количество
+      durationInMinutes: 60,
+      amount: 1500.00, //сумма
+      vat: 20, //ставка НДС
+      method: 0, // тег-1214 признак способа расчета - признак способа расчета
+      object: 0, // тег-1212 признак предмета расчета - признак предмета товара, работы, услуги, платежа, выплаты, иного предмета расчета
+      taxationSystem: 0, //система налогообложения; необязательный, если у вас одна система налогообложения
+      email: 'user@example.com', //e-mail покупателя, если нужно отправить письмо с чеком
+      phone: '', //телефон покупателя в любом формате, если нужно отправить сообщение со ссылкой на чек
+      isBso: false, //чек является бланком строгой отчётности
+    };
+
+    data.recurrent = {
+      interval: 'Month',
+      period: 1
+    }; //создание ежемесячной подписки
+
+    data.receipt = receipt;
+    data.isSubscription = true;
+    data.paymentOption = 'acquiring'
+
+    widget.charge({ // options
+        publicId: 'pk_0ae876e52e8225495c4aefa4c339f', //id из личного кабинета
+        description: 'Подписка на ежемесячную консультацию психолога', //назначение
+        amount: 1500, //сумма
+        currency: 'RUB', //валюта
+        invoiceId: uuidv4(), //номер заказа  (необязательно)
+        accountId: 'user@example.com', //идентификатор плательщика (обязательно для создания подписки)
+        data: data
+      },
+      function (options) { // success
+        window.ReactNativeWebView.postMessage(JSON.stringify(options, null, 2))
+        // alert(JSON.stringify(options, null, 2));
+      },
+      function (reason, options) { // fail
+        // alert(JSON.stringify(reason, null, 2));
+        window.ReactNativeWebView.postMessage(JSON.stringify(options, null, 2))
+        // console.log(JSON.stringify(options, null, 2));
+      });
+  }
+  subscribe();
+</script>
+</body>
+</html>

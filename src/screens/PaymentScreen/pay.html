@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+                       initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body style="width: 100%; height: 100%;">
+<script type="text/javascript" src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+<script type="text/javascript">
+  /*const pay = function () {
+    let widget = new cp.CloudPayments();
+
+    const receipt = {
+      description: 'Единоразовая оплата консультации', //наименование товара
+      price: 1500.00, //цена
+      amount: 1500.00, //сумма
+      quantity: 1, //количество
+      durationInMinutes: 60,
+    };
+
+    let data = {};
+    data.receipt = receipt;
+    data.paymentOption = 'acquiring';
+
+    widget.charge({
+        publicId: "pk_0ae876e52e8225495c4aefa4c339f",
+        description: 'Единоразовая оплата консультации',
+        amount: 1500,
+        currency: 'RUB',
+        invoiceId: '1234567',
+        accountId: 'user@example.com',
+        skin: "mini",
+        data: data
+      },
+      function (options) { // success
+        window.ReactNativeWebView.postMessage(JSON.stringify(options, null, 2))
+        // alert(JSON.stringify(options, null, 2));
+      },
+      function (reason, options) { // fail
+        // alert(JSON.stringify(reason, null, 2));
+        window.ReactNativeWebView.postMessage(JSON.stringify(options, null, 2))
+        // console.log(JSON.stringify(options, null, 2));
+      });
+  };
+  pay();*/
+</script>
+</body>
+</html>

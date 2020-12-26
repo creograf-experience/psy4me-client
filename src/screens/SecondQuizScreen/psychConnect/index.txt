@@ -1,0 +1,30 @@
+import { connect } from 'react-redux';
+
+import PsychSelectionInfoScreenComponent from '../containers/PsychSelectionInfoScreen';
+import {
+  getPsychID,
+  getPsychProfileData,
+} from './actionsPsych';
+
+const mapStateToProps = state => ({
+  fetching: state.psychProfile.fetching,
+  status: state.psychProfile.status,
+  errors: state.psychProfile.status,
+  psychID: state.psychProfile.psychID,
+  psychProfile: state.psychProfile.psychProfile,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getPsychID: (token) => {
+    dispatch(getPsychID(token));
+  },
+
+  getPsychProfileData: (token) => {
+    dispatch(getPsychProfileData(token));
+  },
+});
+
+export const PsychSelectionInfoScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PsychSelectionInfoScreenComponent);

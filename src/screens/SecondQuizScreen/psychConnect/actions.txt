@@ -1,0 +1,37 @@
+import { createAction } from 'redux-actions';
+
+import {
+  getPsychIDNetworkRequest,
+  getPsychProfileNetworkRequest,
+} from '../../../networkers';
+
+export const getPsychDataRequest = createAction('GET_DATA_REQUEST');
+
+export const getPsychIDSuccess = createAction('GET_ID_SUCCESS');
+export const getPsychProfileSuccess = createAction('GET_PROFILE_SUCCESS');
+
+export const getPsychDataFailure = createAction('GET_DATA_FAILURE');
+
+export const getPsychID = token => async (dispatch) => {
+  dispatch(getPsychDataRequest());
+
+  try {
+    const { _id } = await getPsychIDNetworkRequest(token);
+
+    dispatch(getPsychIDSuccess({ psychID: _id }));
+  } catch (error) {
+    dispatch(getPsychDataFailure({ serverError: error }));
+  }
+};
+
+export const getPsychProfileData = token => async (dispatch) => {
+  dispatch(getPsychDataRequest());
+
+  try {
+    const { profile } = await getPsychProfileNetworkRequest(token);
+
+    dispatch(getPsychProfileSuccess({ profile }));
+  } catch (error) {
+    dispatch(getPsychDataFailure({ serverError: error }));
+  }
+};

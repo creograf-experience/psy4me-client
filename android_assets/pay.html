@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+                       initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<script type="text/javascript" src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+<script type="text/javascript">
+  const pay = function () {
+    let widget = new cp.CloudPayments();
+    widget.charge({
+        publicId: "pk_0ae876e52e8225495c4aefa4c339f",
+        description: 'Единоразовая оплата консультации',
+        amount: 1500,
+        currency: 'RUB',
+        invoiceId: '1234567',
+        accountId: 'user@example.com',
+        skin: "mini",
+        data: {
+          myProp: 'myProp value'
+        }
+      },
+      function (options) {
+        alert('success');
+      },
+      function (reason, options) {
+        alert(reason);
+      })
+  };
+  pay();
+</script>
+</body>
+</html>
